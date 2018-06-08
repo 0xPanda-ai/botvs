@@ -1,6 +1,6 @@
 from app import create_app
 from flask.cli import load_dotenv
-from func import getExchange
+from strategies.qipan import main
 import os
 from flask_migrate import Migrate
 from app.extensions import db
@@ -12,4 +12,7 @@ app = create_app(os.getenv("FLASK_ENV"))
 migrate = Migrate(app, db)
 
 
-
+@app.cli.command()
+def qipan():
+    #棋盘策略
+    main()

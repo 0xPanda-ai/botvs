@@ -1,7 +1,12 @@
-import json
+import os
 
-from func import _N, _C, Sleep, Log, exchange
-from robot_conf.qipan import ENTRY_TYPE, BASE_PRICE, SPREADS, BLANCE, NUMBER_GRIDS, STOCKS
+if os.getenv('PLATFORM'):
+    # 如果是本地环境,就加载本地的配置,如果是botvs环境就加载botvs的环境
+    from func import _N, _C, Sleep, Log, getExchange
+    from robot_conf.qipan import ENTRY_TYPE, BASE_PRICE, SPREADS, BLANCE, NUMBER_GRIDS, STOCKS, BASE_CURREN, \
+        QUOTE_CURRENCY, EXCHANGE_NAME, SECRECT_KEY, ACCESS_KEY
+
+    exchange = getExchange(EXCHANGE_NAME, QUOTE_CURRENCY, BASE_CURREN, ACCESS_KEY, SECRECT_KEY)
 
 init_ststus = {}
 

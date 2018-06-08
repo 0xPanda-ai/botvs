@@ -2,7 +2,7 @@
 
 from .common import Common
 from constants import *
-from func import _N
+from func import _N, _C
 
 import base64
 import datetime
@@ -21,8 +21,8 @@ class Service(Common):
     # 7f80ef59-ba8d4dc0-51957f5a-40785
     # f7041765-c81c6671-cf19b32c-3f48d
 
-    MARKET_URL = "https://api.huobi.br.com"
-    TRADE_URL = "https://api.huobi.br.com"
+    MARKET_URL = "https://api.huobi.pro"
+    TRADE_URL = "https://api.huobi.pro"
 
     def __init__(self, access_key, secrect_key, quote_currency, base_currency):
         Common.__init__(self, access_key, secrect_key, quote_currency, base_currency)
@@ -116,7 +116,7 @@ class Service(Common):
         return self.api_key_get(params, path)
 
     def is_suport(self):
-        datas = self.get_symbols()
+        datas = _C(self.get_symbols)
         for data in datas.get('data'):
             if data.get('base-currency') == self.base_currency and data.get('quote-currency') == self.quote_currency:
                 self.price_precision = data.get('price-precision')
@@ -435,7 +435,6 @@ class Exchange(Service):
                 frozen_balance = data.get('balance')
 
         info = {
-            "info": currencys,
             "Balance": balance or None,
             "FrozenBalance": frozen_balance or None,
             "Stocks": stocks or None,
