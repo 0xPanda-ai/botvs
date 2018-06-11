@@ -3,7 +3,7 @@ import requests, socket, socks, abc, json, os
 
 class Common:
     def __init__(self, access_key, secret_key, quote_currency, base_currency):
-        if os.getenv('proxy_enable'):
+        if os.getenv('proxy_enable') == 1:
             socks.set_default_proxy(socks.SOCKS5, os.getenv("proxy_host"), int(os.getenv('proxy_port')))
             socket.socket = socks.socksocket
         self.ACCESS_KEY = access_key
