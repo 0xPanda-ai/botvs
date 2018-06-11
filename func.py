@@ -1,11 +1,19 @@
 import time, importlib
 from decimal import Decimal, ROUND_DOWN
+from app.extensions import db
+from services import text_log_serv
 
-from services import transaction_log_serv
 
+def Log(*args):
+    contents = ''
+    for arg in args:
+        contents = contents + str(arg) + '|'
 
-def Log(*args, **kwargs):
-    print(args, kwargs)
+    data = {
+        'contents': contents
+    }
+    text_log_serv.save(**data)
+    db.session.commit()
 
 
 def Sleep(sleep_time):
@@ -28,4 +36,3 @@ def getExchange(class_name, quote_currency, base_currency, access_key, secrect_k
     module = importlib.import_module('lib.' + class_name)
     exchange = module.Exchange(access_key, secrect_key, quote_currency, base_currency)
     return exchange
-

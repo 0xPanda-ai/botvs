@@ -15,3 +15,8 @@ class TransactionLog(Base):
     price = db.Column(db.DECIMAL, nullable=False)
     amount = db.Column(db.DECIMAL, nullable=False)
     type = db.Column(db.INTEGER, nullable=False)
+
+
+class TextLog(Base):
+    __tablename = 'text_log'
+    contents = db.Column(db.TEXT, nullable=False)
