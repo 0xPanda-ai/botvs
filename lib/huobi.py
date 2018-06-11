@@ -21,8 +21,8 @@ class Service(Common):
     # 7f80ef59-ba8d4dc0-51957f5a-40785
     # f7041765-c81c6671-cf19b32c-3f48d
 
-    MARKET_URL = "https://api.huobi.pro"
-    TRADE_URL = "https://api.huobi.pro"
+    MARKET_URL = "https://api.huobi.br.com"
+    TRADE_URL = "https://api.huobi.br.com"
 
     def __init__(self, access_key, secrect_key, quote_currency, base_currency):
         Common.__init__(self, access_key, secrect_key, quote_currency, base_currency)
