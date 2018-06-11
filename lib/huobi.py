@@ -26,7 +26,7 @@ class Service(Common):
 
     def __init__(self, access_key, secrect_key, quote_currency, base_currency):
         Common.__init__(self, access_key, secrect_key, quote_currency, base_currency)
-        account = self.get_accounts()
+        account = _C(self.get_accounts)
 
         self.account_id = account['data'][0]['id']
 
